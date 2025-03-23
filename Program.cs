@@ -6,7 +6,7 @@ class Program
 {
     private static int _progress;
     private static bool _isCalculating = true;
-    private static int _progressLine; // İlerleme çubuğunun satırını kaydedelim
+    private static int _progressLine; // ilerleme çubuğu satırı kaydetme (save progress bar line)
 
     static void Main(string[] args)
     {
@@ -15,7 +15,7 @@ class Program
 
         // İlerleme çubuğu için boşluk bırak
         Console.WriteLine("\nİlerleme: 0%");
-        _progressLine = Console.CursorTop - 1; // İlerleme satırını kaydet
+        _progressLine = Console.CursorTop - 1; // ilerleme satırını kaydet (save the progress bar)
 
         var progressThread = new Thread(ShowProgress);
         progressThread.Start();
@@ -28,7 +28,7 @@ class Program
         pi /= BigInteger.Pow(10, ekstraHassasiyet);
 
         _isCalculating = false;
-        progressThread.Join(); // İlerleme thread'inin bitmesini bekle
+        progressThread.Join(); // ilerleme thread'inin bitmesini bekle (wait for to progress thread to end)
 
         string piStr = pi.ToString().PadLeft(basamak + 1, '0');
         Console.WriteLine("\nπ = " + piStr.Insert(1, ".").Substring(0, basamak + 2));
@@ -49,7 +49,7 @@ class Program
         }
         catch (ArgumentOutOfRangeException)
         {
-            // Konsol boyutu değişirse hata verme
+            // konsol boyutu değişirse hata verme (don't error when scale of console changes)
         }
     }
 
@@ -74,7 +74,7 @@ class Program
             k++;
             power /= xSquared;
 
-            // Daha gerçekçi ilerleme hesabı
+            // daha gerçekçi ilerleme hesabı için (for more realistic progress calculation)
             _progress = baseProgress + (int)((double)k / (precision / 0.8) * 50);
             _progress = Math.Min(_progress, baseProgress + 50);
         } while (term > 0);
