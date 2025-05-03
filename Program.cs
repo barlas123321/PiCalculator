@@ -10,11 +10,11 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.Write("Kaç basamak hesaplansın? ");
+        Console.Write("Kaç basamak hesaplansın?: ");
         int basamak = int.Parse(Console.ReadLine());
 
         // İlerleme çubuğu için boşluk bırak
-        Console.WriteLine("\nİlerleme: 0%");
+        Console.WriteLine("\nİlerleme: 0% ");
         _progressLine = Console.CursorTop - 1; // ilerleme satırını kaydet (save the progress bar)
 
         var progressThread = new Thread(ShowProgress);
@@ -32,6 +32,7 @@ class Program
 
         string piStr = pi.ToString().PadLeft(basamak + 1, '0');
         Console.WriteLine("\nπ = " + piStr.Insert(1, ".").Substring(0, basamak + 2));
+        Console.ReadKey();
     }
 
     private static void ShowProgress()
